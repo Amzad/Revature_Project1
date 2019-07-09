@@ -6,7 +6,7 @@
         <h3>Create a new account</h3>
         <p>
             Let's get you started with a new account. What type of account are you looking for?
-            @using (Html.BeginForm("New", "Create", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("Index", "Create", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
                 <hr />
@@ -15,13 +15,13 @@
             <div class="form-group col-md-offset-2 col-md-10">
                 <input type="radio" name="account" value="pc"> Personal Checking<br>
                 <input type="radio" name="account" value="bc"> Business Checking<br>
-                <input type="radio" name="account" value="lc"> Loan<br />
+                <input type="radio" name="account" value="la"> Loan<br />
                 <input type="radio" name="account" value="td"> Term Deposit<br />
             </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" class="btn btn-default" value="Register" />
+                    <input type="submit" class="btn btn-default" value="Next" />
                 </div>
             </div>
              }
@@ -29,6 +29,4 @@
             @section Scripts {
                 @Scripts.Render("~/bundles/jqueryval")
             }
-            </p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
         </div>

@@ -179,19 +179,25 @@
       <DependentUpon>201907090251437_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\DataAccessLayer\AccountDAL.cs" />
+    <Compile Include="Models\BusinessLayer\AccountBL.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BusinessLayer\CustomerBL.cs" />
+    <Compile Include="Models\DataAccessLayer\CustomerDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\PersonalCheckingDAL.cs" />
     <Compile Include="Models\Entities\BusinessCheckingAccount.cs" />
     <Compile Include="Models\Entities\Checking.cs" />
     <Compile Include="Models\Entities\Account.cs" />
-    <Compile Include="Models\Entities\Transaction.cs" />
-    <Compile Include="Models\Entities\IAccount.cs" />
     <Compile Include="Models\Entities\LoanAccount.cs" />
     <Compile Include="Models\Entities\PersonalCheckingAccount.cs" />
     <Compile Include="Models\Entities\TermDepositAccount.cs" />
+    <Compile Include="Models\Entities\Transaction.cs" />
+    <Compile Include="Models\Entities\IAccount.cs" />
     <Compile Include="Models\IdentityExtensions.cs" />
     <Compile Include="Models\Entities\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\BusinessLayer\PersonalCheckingBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -252,11 +258,10 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Create\Index.cshtml" />
+    <Content Include="Views\Create\PCAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\BusinessLayer\" />
-    <Folder Include="Models\DataAccessLayer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
