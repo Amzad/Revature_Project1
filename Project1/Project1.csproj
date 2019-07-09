@@ -168,31 +168,27 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907080421499_Initialize.cs" />
-    <Compile Include="Migrations\201907080421499_Initialize.Designer.cs">
-      <DependentUpon>201907080421499_Initialize.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907080424407_Initialize1.cs" />
-    <Compile Include="Migrations\201907080424407_Initialize1.Designer.cs">
-      <DependentUpon>201907080424407_Initialize1.cs</DependentUpon>
+    <Compile Include="Migrations\201907090251437_Initial.cs" />
+    <Compile Include="Migrations\201907090251437_Initial.Designer.cs">
+      <DependentUpon>201907090251437_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Entities\Account.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Context.cs" />
     <Compile Include="Models\Entities\BusinessCheckingAccount.cs" />
     <Compile Include="Models\Entities\Checking.cs" />
-    <Compile Include="Models\Entities\Customer.cs" />
+    <Compile Include="Models\Entities\Account.cs" />
+    <Compile Include="Models\Entities\Transaction.cs" />
     <Compile Include="Models\Entities\IAccount.cs" />
     <Compile Include="Models\Entities\LoanAccount.cs" />
     <Compile Include="Models\Entities\PersonalCheckingAccount.cs" />
     <Compile Include="Models\Entities\TermDepositAccount.cs" />
+    <Compile Include="Models\IdentityExtensions.cs" />
+    <Compile Include="Models\Entities\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -254,14 +250,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Customers\Create.cshtml" />
-    <Content Include="Views\Customers\Delete.cshtml" />
-    <Content Include="Views\Customers\Details.cshtml" />
-    <Content Include="Views\Customers\Edit.cshtml" />
-    <Content Include="Views\Customers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\BusinessLayer\" />
+    <Folder Include="Models\DataAccessLayer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -277,21 +270,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
-      <Project>{d77fdf70-47ed-48c7-9ed6-a472ccf0f377}</Project>
-      <Name>BusinessLayer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
-      <Project>{8c48aa0b-eaba-45b3-a2be-e930ed676295}</Project>
-      <Name>DataAccessLayer</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907080421499_Initialize.resx">
-      <DependentUpon>201907080421499_Initialize.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907080424407_Initialize1.resx">
-      <DependentUpon>201907080424407_Initialize1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907090251437_Initial.resx">
+      <DependentUpon>201907090251437_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

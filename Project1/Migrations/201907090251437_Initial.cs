@@ -3,10 +3,26 @@ namespace Project1.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initialize : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Accounts",
+                c => new
+                    {
+                        AccountID = c.Int(nullable: false, identity: true),
+                        customerID = c.String(),
+                        interestRate = c.Double(nullable: false),
+                        Credit = c.Double(),
+                        Debit = c.Double(),
+                        Debit1 = c.Double(),
+                        Credit1 = c.Double(),
+                        depositTerm = c.Int(),
+                        Discriminator = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => t.AccountID);
+            
             CreateTable(
                 "dbo.AspNetRoles",
                 c => new
@@ -31,10 +47,22 @@ namespace Project1.Migrations
                 .Index(t => t.RoleId);
             
             CreateTable(
+                "dbo.Transactions",
+                c => new
+                    {
+                        id = c.String(nullable: false, maxLength: 128),
+                        accountID = c.String(),
+                        transactionMessage = c.String(),
+                    })
+                .PrimaryKey(t => t.id);
+            
+            CreateTable(
                 "dbo.AspNetUsers",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        FirstName = c.String(),
+                        LastName = c.String(),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -92,8 +120,10 @@ namespace Project1.Migrations
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
+            DropTable("dbo.Transactions");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Accounts");
         }
     }
 }

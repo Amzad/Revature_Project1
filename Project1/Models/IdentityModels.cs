@@ -9,17 +9,29 @@ namespace Project1.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
+            userIdentity.AddClaim(new Claim("FirstName", this.FirstName));
+            userIdentity.AddClaim(new Claim("LastName", this.LastName));
             return userIdentity;
         }
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<PersonalCheckingAccount> CheckingAccounts { get; set; }
+        public DbSet<BusinessCheckingAccount> BusinessAccounts { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<LoanAccount> LoanAccounts { get; set; }
+        public DbSet<TermDepositAccount> TermDepositAccounts { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -29,5 +41,7 @@ namespace Project1.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Project1.Models.Account> Accounts { get; set; }
     }
 }
