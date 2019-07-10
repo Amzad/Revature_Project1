@@ -35,10 +35,11 @@
                 $@Html.DisplayFor(modelItem => item.Debit)
             </td>
             <td>
-                @Html.ActionLink("Withdraw", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Deposit", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Transfer", "Delete", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Close", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Withdraw", "Withdraw", "BusinessChecking", new { id = item.AccountID }, null) |
+                @Html.ActionLink("Deposit", "Deposit", "BusinessChecking", new { id = item.AccountID }, null) |
+                @Html.ActionLink("Transfer", "Transfer", "BusinessChecking", new { id = item.AccountID }, null) |
+                @Html.ActionLink("Transactions", "Transactions", "BusinessChecking", new { id = item.AccountID }, null) |
+                @Html.ActionLink("Close", "Close", "BusinessChecking", new { id = item.AccountID }, null)
             </td>
         </tr>
         }

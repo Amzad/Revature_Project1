@@ -51,12 +51,12 @@ namespace Project1.Models
                 }
                 else if (doubleDebit > 0)
                 {
-                    double remainder = doubleDebit + setAmount;
-                    return new BusinessCheckingDAL().Withdraw(int.Parse(accountID), setAmount, -remainder);
+                    double remainder = doubleDebit + doubleWithdraw;
+                    return new BusinessCheckingDAL().Withdraw(int.Parse(accountID), -remainder, doubleWithdraw);
                 }
                 else
                 {
-                    return new BusinessCheckingDAL().Withdraw(int.Parse(accountID), setAmount, -doubleWithdraw);
+                    return new BusinessCheckingDAL().Withdraw(int.Parse(accountID), -doubleWithdraw, doubleWithdraw);
                 }
             }
             catch
