@@ -1,11 +1,16 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 
 namespace Project1.Models
 {
     public class BusinessCheckingDAL : AccountDAL
     {
+        ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+
         public void Create(BusinessCheckingAccount cust)
         {
             var context = new ApplicationDbContext();
@@ -16,7 +21,7 @@ namespace Project1.Models
         public List<BusinessCheckingAccount> GetList()
         {
             var context = new ApplicationDbContext();
-            return context.BusinessAccounts.ToList();
+            return context.BusinessAccounts.Where(c => c.customerID == user.Id).ToList();
         }
 
         public String Withdraw(BusinessCheckingAccount ba, double amount, double balance)

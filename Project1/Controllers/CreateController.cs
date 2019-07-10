@@ -100,28 +100,32 @@ namespace Project1.Controllers
         public ActionResult LoadPC()
         {
             var list = new PersonalCheckingBL().GetList();
-            return PartialView("_PCView", list);
+            if (list.Count() > 0) return PartialView("_PCView", list);
+            return null;
         }
 
         [Authorize]
         public ActionResult LoadBC()
         {
             var list = new BusinessCheckingBL().GetList();
-            return PartialView("_BCView", list);
+            if (list.Count() > 0) return PartialView("_BCView", list);
+            return null;
         }
 
         [Authorize]
         public ActionResult LoadLA()
         {
             var list = new LoanBL().GetList();
-            return PartialView("_LAView", list);
+            if (list.Count() > 0) return PartialView("_LAView", list);
+            return null;
         }
 
         [Authorize]
         public ActionResult LoadTD()
         {
             var list = new TermDepositBL().GetList();
-            return PartialView("_TDView", list);
+            if (list.Count() > 0) return PartialView("_TDView", list);
+            return null;
         }
     }
 }

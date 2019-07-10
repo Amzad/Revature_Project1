@@ -1,11 +1,16 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Web;
+
 namespace Project1.Models
 {
     public class PersonalCheckingDAL : AccountDAL
     {
+        ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
         public void Create(PersonalCheckingAccount cust)
         {
                 var context = new ApplicationDbContext();
@@ -16,7 +21,7 @@ namespace Project1.Models
         public List<PersonalCheckingAccount> GetList()
         {
             var context = new ApplicationDbContext();
-            return context.CheckingAccounts.ToList();
+            return context.CheckingAccounts.Where(c => c.customerID == user.Id).ToList(); 
         }
 
 
@@ -33,7 +38,6 @@ namespace Project1.Models
                 var db = new ApplicationDbContext();
                 PersonalCheckingAccount personalCheckingAccount = db.CheckingAccounts.Find(naccountID);
                 personalCheckingAccount.Credit = Credit;
-                //personalCheckingAccount.transactionLog.Add("Withdrawal of " + withdrawvalue);
                 Transaction ta = new Transaction()
                 {
                     id = 0,

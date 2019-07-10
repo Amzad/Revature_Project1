@@ -53,7 +53,6 @@ namespace Project1.Models
             {
                 throw;
             }
-            return null;
         }
 
         public String Deposit(int accountID, double amount)

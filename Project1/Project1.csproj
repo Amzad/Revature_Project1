@@ -220,6 +220,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\Amzad - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -276,13 +277,13 @@
     <Content Include="Views\Shared\_BCView.cshtml" />
     <Content Include="Views\Shared\_LAView.cshtml" />
     <Content Include="Views\Shared\_TDView.cshtml" />
-    <Content Include="Views\Shared\_PCView - Copy %284%29.cshtml" />
     <Content Include="Views\PersonalChecking\Create.cshtml" />
     <Content Include="Views\PersonalChecking\Delete.cshtml" />
     <Content Include="Views\PersonalChecking\Details.cshtml" />
     <Content Include="Views\PersonalChecking\Edit.cshtml" />
     <Content Include="Views\PersonalChecking\Index.cshtml" />
     <Content Include="Views\PersonalChecking\Withdraw.cshtml" />
+    <Content Include="Views\PersonalChecking\Confirmed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

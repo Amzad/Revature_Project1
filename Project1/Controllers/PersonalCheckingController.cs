@@ -57,21 +57,25 @@ namespace Project1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Withdraw(string accountID, string Credit, string withdrawvalue)
         {
-            System.Diagnostics.Debug.WriteLine(accountID);
-            System.Diagnostics.Debug.WriteLine(Credit);
-            System.Diagnostics.Debug.WriteLine(withdrawvalue);
+            //System.Diagnostics.Debug.WriteLine(accountID);
+            //System.Diagnostics.Debug.WriteLine(Credit);
+            //System.Diagnostics.Debug.WriteLine(withdrawvalue);
             try
             {
                 PersonalCheckingAccount pa = new PersonalCheckingBL().Withdraw(accountID, Credit, withdrawvalue);
-                return View(pa);
+                ViewBag.Confirm = $"Your withdrawal of {withdrawvalue} was completed from account {accountID}";
+                return View("Confirmed");
             }
             catch
             {
                 return RedirectToAction("Index");
             }
-
-            return RedirectToAction("Index");
         }
+
+        /*public ActionResult Withdraw(String completed)
+        {
+           // return
+        }*/
 
         // GET: PersonalCheckingAccounts/Delete/5
         public ActionResult Delete(int? id)
