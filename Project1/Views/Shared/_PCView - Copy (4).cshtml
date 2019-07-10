@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Project1.Models.PersonalCheckingAccount>
+
+@{
+    //ViewData["Title"] = "GetAllCustomers";
+}
+
+<h4>Personal Checking Accounts</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Account Number
+            </th>
+            <th>
+                Balance
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Credit)
+                </td>
+                <td>
+                    @Html.ActionLink("Withdraw", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Deposit", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Transfer", "Delete", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Close", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

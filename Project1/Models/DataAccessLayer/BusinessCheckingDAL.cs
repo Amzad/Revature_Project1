@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+
 namespace Project1.Models
 {
     public class BusinessCheckingDAL : AccountDAL
     {
-        public Account Create(Customer cust)
+        public void Create(BusinessCheckingAccount cust)
         {
-            BusinessCheckingAccount newAccount = new BusinessCheckingAccount()
-            {
-                AccountID = AccountDAL.accountList.Count + 1000,
-                customerID = cust.ID,
-                Credit = 0,
-                Debit = 0,
-                interestRate = 4.5
+            var context = new ApplicationDbContext();
+            context.BusinessAccounts.Add(cust);
+            context.SaveChanges();
+        }
 
-            };
-            AccountDAL.accountList.Add(newAccount);
-            return newAccount;
+        public List<BusinessCheckingAccount> GetList()
+        {
+            var context = new ApplicationDbContext();
+            return context.BusinessAccounts.ToList();
         }
 
         public String Withdraw(BusinessCheckingAccount ba, double amount, double balance)

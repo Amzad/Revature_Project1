@@ -1,25 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+
 namespace Project1.Models
 {
     public class LoanDAL : AccountDAL
     { 
-        public LoanDAL()
+        public void Create(LoanAccount cust)
         {
+            var context = new ApplicationDbContext();
+            context.LoanAccounts.Add(cust);
+            context.SaveChanges();
         }
 
-        public Account Create(Customer cust, int amount)
+        public List<LoanAccount> GetList()
         {
-            LoanAccount newAccount = new LoanAccount()
-            {
-                AccountID = AccountDAL.accountList.Count + 1000,
-                customerID = cust.ID,
-                Debit = amount,
-                interestRate = 6.5
-
-            };
-            AccountDAL.accountList.Add(newAccount);
-            return newAccount;
+            var context = new ApplicationDbContext();
+            return context.LoanAccounts.ToList();
         }
 
         public String PayInstallment(LoanAccount account, double amount)

@@ -1,28 +1,32 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using System;
+using System.Collections.Generic;
+using System.Web;
 
 namespace Project1.Models
 {
     public class LoanBL : IAccount
     {
-        public Account Create(Customer cust, int amount)
+        public void Create(string loanamount)
         {
-            try
-            {
-                Account newAccount = new LoanDAL().Create(cust, amount);
-                newAccount = new CustomerDAL().addAccount(cust, newAccount);
-                return newAccount;
+            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            LoanDAL accountDAL = new LoanDAL();
 
-            }
-            catch (Exception)
+            LoanAccount newAccount = new LoanAccount()
             {
+                customerID = user.Id,
+                Debit = int.Parse(loanamount),
+                interestRate = 6.5
 
-                return null;
-            }
+            };
+            accountDAL.Create(newAccount);
         }
 
-        public Account Create(Customer cust)
+        public List<LoanAccount> GetList()
         {
-            throw new NotImplementedException();
+            return new LoanDAL().GetList();
+
         }
 
         public string Deposit(int accountID, double amount)
@@ -30,12 +34,12 @@ namespace Project1.Models
             throw new Exception();
         }
 
-        public String PayInstallment(int accountID, double amount)
+       /* public String PayInstallment(int accountID, double amount)
         {
             LoanAccount la = AccountDAL.accountList.Find(acc => acc.AccountID == accountID) as LoanAccount;
             return new LoanDAL().PayInstallment(la, amount);
 
-        }
+        }*/
 
         public string Withdraw(int accountID, double amount)
         {

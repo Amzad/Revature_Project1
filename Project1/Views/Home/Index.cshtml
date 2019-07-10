@@ -2,10 +2,15 @@
     ViewBag.Title = "Home Page";
 }
 
-<div>
+    <div>
         <h2>Welcome to the Console Bank</h2>
         <p>
             We are committed to bringing you the best customer service in the nation!
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-</div>
+    @Html.Action("LoadMessage", "Create")
+    @Html.Action("LoadPC", "Create")
+    @Html.Action("LoadBC", "Create")
+    @Html.Action("LoadLA", "Create")
+    @Html.Action("LoadTD", "Create")
+
+    </div>

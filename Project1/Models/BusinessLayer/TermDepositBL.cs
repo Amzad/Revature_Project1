@@ -1,30 +1,34 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using System;
+using System.Collections.Generic;
+using System.Web;
 
 namespace Project1.Models
 {
     public class TermDepositBL : IAccount
     {
 
-        public Account Create(Customer cust, int amount, int length)
+        public void Create(string loanamount, string loanlength)
         {
-            try
+            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            TermDepositDAL accountDAL = new TermDepositDAL();
+
+            TermDepositAccount newAccount = new TermDepositAccount()
             {
-                Account newAccount = new TermDepositDAL().Create(cust, amount, length);
-                newAccount = new CustomerDAL().addAccount(cust, newAccount);
+                customerID = user.Id,
+                Credit = int.Parse(loanamount),
+                interestRate = 1.5,
+                depositTerm = int.Parse(loanlength)
 
-                return newAccount;
-
-            }
-            catch (Exception)
-            {
-
-                return null;
-            }
+            };
+            accountDAL.Create(newAccount);
         }
 
-        public Account Create(Customer cust)
+        public List<TermDepositAccount> GetList()
         {
-            throw new NotImplementedException();
+            return new TermDepositDAL().GetList();
+
         }
 
         // Not used. Throw unimplementederror.
@@ -37,7 +41,7 @@ namespace Project1.Models
         {
             try
             {
-                TermDepositAccount ta = AccountDAL.accountList.Find(account => account.AccountID == accountID) as TermDepositAccount;
+                /*TermDepositAccount ta = AccountDAL.accountList.Find(account => account.AccountID == accountID) as TermDepositAccount;
 
                 if (ta.depositTerm == 0)
                 {
@@ -48,12 +52,13 @@ namespace Project1.Models
                 else
                 {
                     throw new Exception();
-                }
+                }*/
             }
             catch (Exception)
             {
                 throw;
             }
+            return null;
         }
 
         public String Transfer(int fromAccount, int toAccount, double amount)

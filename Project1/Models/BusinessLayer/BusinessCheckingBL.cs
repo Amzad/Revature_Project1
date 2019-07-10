@@ -1,22 +1,36 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using System;
+using System.Collections.Generic;
+using System.Web;
+
 namespace Project1.Models
 {
     public class BusinessCheckingBL : IAccount
     {
-        public Account Create(Customer cust)
+        public void Create(string accountType, string startingValue)
         {
-            try
-            {
-                Account newAccount = new BusinessCheckingDAL().Create(cust);
-                newAccount = new CustomerDAL().addAccount(cust, newAccount);
-                return newAccount;
+            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            BusinessCheckingDAL accountDAL = new BusinessCheckingDAL();
+            //int accountIDCount = accountDAL.GetCount();
 
-            }
-            catch (Exception)
+            BusinessCheckingAccount newAccount = new BusinessCheckingAccount()
             {
+                AccountID = 0,
+                customerID = user.Id,
+                Credit = int.Parse(startingValue),
+                Debit = 0,
+                interestRate = 3.5
 
-                return null;
-            }
+            };
+
+            accountDAL.Create(newAccount);
+        }
+
+        public List<BusinessCheckingAccount> GetList()
+        {
+            return new BusinessCheckingDAL().GetList();
+
         }
 
         public String Withdraw(int accountID, double amount)
@@ -24,7 +38,7 @@ namespace Project1.Models
             try
             {
 
-                BusinessCheckingAccount ba = AccountDAL.accountList.Find(account => account.AccountID == accountID) as BusinessCheckingAccount;
+               /* BusinessCheckingAccount ba = AccountDAL.accountList.Find(account => account.AccountID == accountID) as BusinessCheckingAccount;
                 if (ba.Credit > 0)
                 {
                     double setAmount = ba.Credit - amount;
@@ -44,19 +58,20 @@ namespace Project1.Models
                 else
                 {
                     return new BusinessCheckingDAL().Withdraw(ba, amount, -amount); 
-                }
+                }*/
             }
             catch
             {
                 throw;
             }
+            return null;
         }
 
         public String Deposit(int accountID, double amount)
         {
             try
             {
-                BusinessCheckingAccount ba = AccountDAL.accountList.Find(account => account.AccountID == accountID) as BusinessCheckingAccount;
+                /*BusinessCheckingAccount ba = AccountDAL.accountList.Find(account => account.AccountID == accountID) as BusinessCheckingAccount;
                 if (ba.Credit > 0)
                 {
                     double setAmount = ba.Credit + amount;
@@ -78,12 +93,13 @@ namespace Project1.Models
                 else
                 {
                     return new BusinessCheckingDAL().Deposit(ba, amount, amount);
-                }
+                }*/
             }
             catch
             {
                 throw;
             }
+            return null;
 
         }
 

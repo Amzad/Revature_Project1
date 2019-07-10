@@ -1,21 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Project1.Models
 {
     public class TermDepositDAL
     {
-        public Account Create(Customer cust, int amount, int length)
+        public void Create(TermDepositAccount cust)
         {
-            Account newAccount = new TermDepositAccount()
-            {
-                AccountID = AccountDAL.accountList.Count + 1000,
-                customerID = cust.ID,
-                Credit = amount,
-                interestRate = 5.5,
-                depositTerm = length,
+            var context = new ApplicationDbContext();
+            context.TermDepositAccounts.Add(cust);
+            context.SaveChanges();
+        }
 
-            };
-            AccountDAL.accountList.Add(newAccount);
-            return newAccount;
+        public List<TermDepositAccount> GetList()
+        {
+            var context = new ApplicationDbContext();
+            return context.TermDepositAccounts.ToList();
         }
 
         public String Withdraw(TermDepositAccount ta, double amount)

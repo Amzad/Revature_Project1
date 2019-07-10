@@ -21,12 +21,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Main Menu", "Index", "Home")</li>
                     <li>@Html.ActionLink("New Account", "Index", "Create")</li>
-                    <li>@Html.ActionLink("Withdraw", "Index", "Withdraw")</li>
-                    <li>@Html.ActionLink("Deposit", "Index", "Deposit")</li>
-                    <li>@Html.ActionLink("Transfer", "Index", "Transfer")</li>
-                    <li>@Html.ActionLink("Loan Payment", "Index", "LoanPayment")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")

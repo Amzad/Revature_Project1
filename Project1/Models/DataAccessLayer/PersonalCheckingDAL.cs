@@ -7,10 +7,17 @@ namespace Project1.Models
     {
         public void Create(PersonalCheckingAccount cust)
         {
-            var context = new ApplicationDbContext();
-            context.CheckingAccounts.Add(cust);
-            context.SaveChanges();
+                var context = new ApplicationDbContext();
+                context.CheckingAccounts.Add(cust);
+                context.SaveChanges();
         }
+
+        public List<PersonalCheckingAccount> GetList()
+        {
+            var context = new ApplicationDbContext();
+            return context.CheckingAccounts.ToList();
+        }
+
 
         public int GetCount()
         {

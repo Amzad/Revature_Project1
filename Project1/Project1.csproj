@@ -178,13 +178,23 @@
     <Compile Include="Migrations\201907090251437_Initial.Designer.cs">
       <DependentUpon>201907090251437_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907100110547_Checking.cs" />
+    <Compile Include="Migrations\201907100110547_Checking.Designer.cs">
+      <DependentUpon>201907100110547_Checking.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BusinessLayer\BusinessCheckingBL.cs" />
+    <Compile Include="Models\BusinessLayer\LoanBL.cs" />
+    <Compile Include="Models\BusinessLayer\TermDepositBL.cs" />
     <Compile Include="Models\DataAccessLayer\AccountDAL.cs" />
     <Compile Include="Models\BusinessLayer\AccountBL.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BusinessLayer\CustomerBL.cs" />
+    <Compile Include="Models\DataAccessLayer\BusinessCheckingDAL.cs" />
     <Compile Include="Models\DataAccessLayer\CustomerDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\LoanDAL.cs" />
     <Compile Include="Models\DataAccessLayer\PersonalCheckingDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\TermDepositDAL.cs" />
     <Compile Include="Models\Entities\BusinessCheckingAccount.cs" />
     <Compile Include="Models\Entities\Checking.cs" />
     <Compile Include="Models\Entities\Account.cs" />
@@ -259,6 +269,16 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Create\Index.cshtml" />
     <Content Include="Views\Create\PCAccount.cshtml" />
+    <Content Include="Views\Shared\_PCView.cshtml" />
+    <Content Include="Views\Create\Confirmed.cshtml" />
+    <Content Include="Views\Create\BCAccount.cshtml" />
+    <Content Include="Views\Create\LAccount.cshtml" />
+    <Content Include="Views\Create\TDAccount.cshtml" />
+    <Content Include="Views\Shared\_MessageView.cshtml" />
+    <Content Include="Views\Shared\_BCView.cshtml" />
+    <Content Include="Views\Shared\_LAView.cshtml" />
+    <Content Include="Views\Shared\_TDView.cshtml" />
+    <Content Include="Views\Shared\_PCView - Copy %284%29.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -279,6 +299,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201907090251437_Initial.resx">
       <DependentUpon>201907090251437_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907100110547_Checking.resx">
+      <DependentUpon>201907100110547_Checking.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

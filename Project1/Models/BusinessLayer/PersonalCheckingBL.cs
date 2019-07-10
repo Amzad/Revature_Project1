@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
+using System.Collections.Generic;
 using System.Web;
 
 namespace Project1.Models
@@ -9,32 +10,27 @@ namespace Project1.Models
     {
         public void Create(string accountType, string startingValue)
         {
-            try
+            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            PersonalCheckingDAL accountDAL = new PersonalCheckingDAL();
+            int accountIDCount = accountDAL.GetCount();
+
+            PersonalCheckingAccount newAccount = new PersonalCheckingAccount()
             {
+                AccountID = accountIDCount,
+                customerID = user.Id,
+                Credit = int.Parse(startingValue),
+                Debit = 0,
+                interestRate = 2.5
 
-                ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-                PersonalCheckingDAL accountDAL = new PersonalCheckingDAL();
-                int accountIDCount = accountDAL.GetCount();
+            };
 
-                PersonalCheckingAccount newAccount = new PersonalCheckingAccount()
-                {
-                    AccountID = accountIDCount,
-                    customerID = user.Id,
-                    Credit = int.Parse(startingValue),
-                    Debit = 0,
-                    interestRate = 2.5
+            accountDAL.Create(newAccount);
+        }
 
-                };
-                System.Diagnostics.Debug.WriteLine(user.Id);
-                System.Diagnostics.Debug.WriteLine(startingValue);
-                System.Diagnostics.Debug.WriteLine(accountType);
-                System.Diagnostics.Debug.WriteLine(newAccount);
-            }
-            catch (Exception e)
-            {
-                System.Diagnostics.Debug.WriteLine(e);
-                throw;
-            }
+        public List<PersonalCheckingAccount> GetList()
+        {
+            return new PersonalCheckingDAL().GetList();
+
         }
 
         public String Withdraw(int accountID, double amount)
