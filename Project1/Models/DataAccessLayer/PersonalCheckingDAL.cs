@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 namespace Project1.Models
 {
@@ -25,12 +26,29 @@ namespace Project1.Models
             return customers;
         } 
 
-        public String Withdraw(PersonalCheckingAccount pa, double amount, double balance)
+        public PersonalCheckingAccount Withdraw(int naccountID, double Credit, double withdrawvalue)
         {
-            pa.Credit = balance;
-            pa.transactionLog.Add("Withdrawal of " + amount);
-            return ($"Your new balance for account {pa.AccountID} is ${pa.Credit}");
-
+            try
+            {
+                var db = new ApplicationDbContext();
+                PersonalCheckingAccount personalCheckingAccount = db.CheckingAccounts.Find(naccountID);
+                personalCheckingAccount.Credit = Credit;
+                //personalCheckingAccount.transactionLog.Add("Withdrawal of " + withdrawvalue);
+                Transaction ta = new Transaction()
+                {
+                    id = 0,
+                    accountID = naccountID,
+                    transactionMessage = "Withdrawal of " + withdrawvalue
+                };
+                db.Transactions.Add(ta);
+                db.Entry(personalCheckingAccount).State = EntityState.Modified;
+                db.SaveChanges();
+                return personalCheckingAccount;
+            } catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e);
+                return null;
+            }
         }
 
         public String Deposit(PersonalCheckingAccount pa, double amount, double balance)

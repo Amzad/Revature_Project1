@@ -33,20 +33,20 @@ namespace Project1.Models
 
         }
 
-        public String Withdraw(int accountID, double amount)
+        public PersonalCheckingAccount Withdraw(string accountID, string Credit, string withdrawvalue)
         {
             try
             {
-                /*PersonalCheckingAccount pa = AccountDAL.accountList.Find(account => account.AccountID == accountID) as PersonalCheckingAccount;
-                double balance = pa.Credit - amount;
+                //PersonalCheckingAccount pa = AccountDAL.accountList.Find(account => account.AccountID == accountID) as PersonalCheckingAccount;
+                double balance = double.Parse(Credit) - double.Parse(withdrawvalue);
                 if (balance >= 0)
                 {
-                    return new PersonalCheckingDAL().Withdraw(pa, amount, balance);
+                    return new PersonalCheckingDAL().Withdraw(int.Parse(accountID), balance, double.Parse(withdrawvalue));
                 }
                 else
                 {
                     throw new Exception();
-                }*/
+                }
 
             }
             catch
@@ -74,25 +74,26 @@ namespace Project1.Models
 
         public String Transfer(int fromAccount, int toAccount, double amount)
         {
-            try
-            {
-                AccountBL azBL = new AccountBL();
-                var fromAcc = new AccountBL().GetAccount(fromAccount);
-                var toAcc = new AccountBL().GetAccount(toAccount);
-                //if ((toAcc is PersonalCheckingAccount) || (toAcc is BusinessCheckingAccount))
-                if ((toAcc is PersonalCheckingAccount))
-                {
-                    Withdraw(fromAccount, amount);
-                    new AccountBL().Deposit((IAccount)new AccountBL().getType(toAcc), toAccount, amount);
-                    return ($"Your transfer of ${amount} was completed from account {fromAccount} to account {toAccount}");
-                }
-                throw new Exception();
+            /* try
+             {
+                 AccountBL azBL = new AccountBL();
+                 var fromAcc = new AccountBL().GetAccount(fromAccount);
+                 var toAcc = new AccountBL().GetAccount(toAccount);
+                 //if ((toAcc is PersonalCheckingAccount) || (toAcc is BusinessCheckingAccount))
+                 if ((toAcc is PersonalCheckingAccount))
+                 {
+                     Withdraw(fromAccount, amount);
+                     new AccountBL().Deposit((IAccount)new AccountBL().getType(toAcc), toAccount, amount);
+                     return ($"Your transfer of ${amount} was completed from account {fromAccount} to account {toAccount}");
+                 }
+                 throw new Exception();
 
-            }
-            catch
-            {
-                throw;
-            }
+             }
+             catch
+             {
+                 throw;
+             }*/
+            return null;
         }
     }
 }

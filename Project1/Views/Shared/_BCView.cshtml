@@ -6,19 +6,19 @@
 
 <h4>Business Checking Accounts</h4>
 
-<table class="table">
+<table class="table" style="width:auto">
     <thead>
         <tr>
-            <th>
+            <th style="min-width:200px">
                 Account Number
             </th>
-            <th>
+            <th style="min-width:200px">
                 Balance
             </th>
-            <th>
+            <th style="min-width:200px">
                 Overdraft Balance
             </th>
-            <th></th>
+            <th style="min-width:200px">Account Functions</th>
         </tr>
     </thead>
     <tbody>
@@ -29,10 +29,10 @@
                 @Html.DisplayFor(modelItem => item.AccountID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Credit)
+                $@Html.DisplayFor(modelItem => item.Credit)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Debit)
+                $@Html.DisplayFor(modelItem => item.Debit)
             </td>
             <td>
                 @Html.ActionLink("Withdraw", "Edit", new { /* id=item.PrimaryKey */ }) |

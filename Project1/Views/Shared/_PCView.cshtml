@@ -5,16 +5,18 @@
 }
 
 <h4>Personal Checking Accounts</h4>
-<table class="table">
+<table class="table" style="width: inherit">
     <thead>
         <tr>
-            <th>
+            <th style="min-width:200px">
                 Account Number
             </th>
-            <th>
+            <th style="min-width:200px">
                 Balance
             </th>
-            <th></th>
+            <th style="min-width:200px">
+            </th>
+            <th style="min-width:200px">Account Functions</th>
         </tr>
     </thead>
     <tbody>
@@ -25,13 +27,15 @@
                     @Html.DisplayFor(modelItem => item.AccountID)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Credit)
+                    $@Html.DisplayFor(modelItem => item.Credit)
                 </td>
+                <td></td>
                 <td>
-                    @Html.ActionLink("Withdraw", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Deposit", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Transfer", "Delete", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Close", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Withdraw", "Withdraw", "PersonalChecking", new { id=item.AccountID }, null) |
+                    @Html.ActionLink("Deposit", "Deposit", "PersonalChecking", new { id=item.AccountID }, null) |
+                    @Html.ActionLink("Transfer", "Transfer", "PersonalChecking", new { id=item.AccountID }, null) |
+                    @Html.ActionLink("Transactions", "Transactions", "PersonalChecking", new { id=item.AccountID }, null) |
+                    @Html.ActionLink("Close", "Close", "PersonalChecking", new { id=item.AccountID }, null)
                 </td>
             </tr>
         }

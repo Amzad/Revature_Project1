@@ -3,7 +3,7 @@ namespace Project1.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class First : DbMigration
     {
         public override void Up()
         {
@@ -50,8 +50,8 @@ namespace Project1.Migrations
                 "dbo.Transactions",
                 c => new
                     {
-                        id = c.String(nullable: false, maxLength: 128),
-                        accountID = c.String(),
+                        id = c.Int(nullable: false, identity: true),
+                        accountID = c.Int(nullable: false),
                         transactionMessage = c.String(),
                     })
                 .PrimaryKey(t => t.id);

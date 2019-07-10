@@ -1,0 +1,57 @@
+﻿@model Project1.Models.PersonalCheckingAccount
+
+@{
+    ViewBag.Title = "Withdraw";
+}
+
+<h2></h2>
+
+@using (Html.BeginForm("Withdraw", "PersonalChecking", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Withdraw from Personal Checking Account</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.AccountID)
+    @Html.HiddenFor(model => model.Credit)
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Account ID</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.AccountID, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Credit, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Credit, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="withdrawvalue">Withdrawl Amount</label>
+        <div class="col-md-10">
+            <input type="text" name="withdrawvalue" id="withdrawvalue" class="form-control" required><br>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Withdraw" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to Account List", "Index", "Home");
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

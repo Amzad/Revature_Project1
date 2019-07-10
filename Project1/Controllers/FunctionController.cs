@@ -7,7 +7,7 @@ using Project1.Models;
 
 namespace Project1.Controllers
 {
-    public class CreateController : Controller
+    public class FunctionController : Controller
     {
         [Authorize]
         [HttpGet]

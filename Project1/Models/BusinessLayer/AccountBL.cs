@@ -7,10 +7,6 @@ namespace Project1.Models
     {
         IAccount _account;
 
-        public String Withdraw(IAccount account, int accountID, double amount)
-        {
-            return account.Withdraw(accountID, amount);
-        }
 
         public String Deposit(IAccount account, int accountID, double amount)
         {
