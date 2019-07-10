@@ -10,7 +10,7 @@ namespace Project1.Models
     public class TermDepositDAL
     {
         ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-
+        //Test
         public void Create(TermDepositAccount cust)
         {
             var context = new ApplicationDbContext();
