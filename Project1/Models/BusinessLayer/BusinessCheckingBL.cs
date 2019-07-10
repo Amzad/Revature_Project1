@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Project1.Models
 {
-    public class BusinessCheckingBL : IAccount
+    public class BusinessCheckingBL
     {
         public void Create(string accountType, string startingValue)
         {
@@ -33,32 +33,31 @@ namespace Project1.Models
 
         }
 
-        public String Withdraw(int accountID, double amount)
+        public BusinessCheckingAccount Withdraw(string accountID, string Credit, string Debit, string withdrawvalue)
         {
             try
             {
+                double doubleCredit = double.Parse(Credit);
+                double doubleWithdraw = double.Parse(withdrawvalue);
+                double doubleDebit = double.Parse(Debit);
+                double setAmount = doubleCredit - doubleWithdraw;
 
-               /* BusinessCheckingAccount ba = AccountDAL.accountList.Find(account => account.AccountID == accountID) as BusinessCheckingAccount;
-                if (ba.Credit > 0)
+                if (doubleCredit > 0)
                 {
-                    double setAmount = ba.Credit - amount;
                     if (setAmount < 0)
                     {
-                        return new BusinessCheckingDAL().Withdraw(ba, amount, setAmount); // return negative value for debit
-                    } else
-                    {
-                        return new BusinessCheckingDAL().Withdraw(ba, amount, setAmount); // return positive value for credit
+                        return new BusinessCheckingDAL().Withdraw(int.Parse(accountID), setAmount, doubleWithdraw); // return negative value for debit
                     }
                 }
-                else if (ba.Debit > 0)
+                else if (doubleDebit > 0)
                 {
-                    double remainder = ba.Debit + amount;
-                    return new BusinessCheckingDAL().Withdraw(ba, amount, -remainder);
+                    double remainder = doubleDebit + setAmount;
+                    return new BusinessCheckingDAL().Withdraw(int.Parse(accountID), setAmount, -remainder);
                 }
                 else
                 {
-                    return new BusinessCheckingDAL().Withdraw(ba, amount, -amount); 
-                }*/
+                    return new BusinessCheckingDAL().Withdraw(int.Parse(accountID), setAmount, -doubleWithdraw);
+                }
             }
             catch
             {
@@ -67,45 +66,48 @@ namespace Project1.Models
             return null;
         }
 
-        public String Deposit(int accountID, double amount)
+        public BusinessCheckingAccount Deposit(string accountID, string Credit, string Debit, string depositvalue)
         {
             try
             {
-                /*BusinessCheckingAccount ba = AccountDAL.accountList.Find(account => account.AccountID == accountID) as BusinessCheckingAccount;
-                if (ba.Credit > 0)
+                double doubleCredit = double.Parse(Credit);
+                double doubleDeposit = double.Parse(depositvalue);
+                double doubleDebit = double.Parse(Debit);
+                //double setAmount = doubleCredit - doubleDeposit;
+
+                if (doubleCredit > 0)
                 {
-                    double setAmount = ba.Credit + amount;
-                    return new BusinessCheckingDAL().Deposit(ba, amount, setAmount);
+                    double setAmount = doubleCredit + doubleDeposit;
+                    return new BusinessCheckingDAL().Deposit(int.Parse(accountID), doubleDeposit, setAmount);
                 }
-                else if (ba.Debit > 0)
-                {  
-                    double remainder = ba.Debit - amount; // -4700 = 300 - 5000
+                else if (doubleDebit > 0)
+                {
+                    double remainder = doubleDebit - doubleDeposit; // -4700 = 300 - 5000
                     if (remainder <= 0)
                     {
 
-                        return new BusinessCheckingDAL().Deposit(ba, amount,  Math.Abs(remainder));
+                        return new BusinessCheckingDAL().Deposit(int.Parse(accountID), doubleDeposit, Math.Abs(remainder));
                     }
                     else
                     {
-                        return new BusinessCheckingDAL().Deposit(ba, amount, -remainder);
+                        return new BusinessCheckingDAL().Deposit(int.Parse(accountID), doubleDeposit, -remainder);
                     }
                 }
                 else
                 {
-                    return new BusinessCheckingDAL().Deposit(ba, amount, amount);
-                }*/
+                    return new BusinessCheckingDAL().Deposit(int.Parse(accountID), doubleDeposit, doubleDeposit);
+                }
             }
             catch
             {
                 throw;
-            }
-            return null;
 
+            }
         }
 
         public String Transfer(int fromAccount, int toAccount, double amount)
         {
-            try
+            /*try
             {
                 AccountBL azBL = new AccountBL();
                 var fromAcc = new AccountBL().GetAccount(fromAccount);
@@ -121,7 +123,8 @@ namespace Project1.Models
             catch
             {
                 throw;
-            }
+            }*/
+            return null;
         }
     }
 }

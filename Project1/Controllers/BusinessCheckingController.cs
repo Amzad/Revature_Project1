@@ -10,14 +10,14 @@ using Project1.Models;
 
 namespace Project1.Controllers
 {
-    public class PersonalCheckingController : Controller
+    public class BusinessCheckingController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: PersonalCheckingAccounts
         public ActionResult Index()
         {
-            return View(db.CheckingAccounts.ToList());
+            return View(db.BusinessAccounts.ToList());
         }
 
         // GET: PersonalCheckingAccounts/Details/5
@@ -27,12 +27,12 @@ namespace Project1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PersonalCheckingAccount personalCheckingAccount = db.CheckingAccounts.Find(id);
-            if (personalCheckingAccount == null)
+            BusinessCheckingAccount businessCheckingAccount = db.BusinessAccounts.Find(id);
+            if (businessCheckingAccount == null)
             {
                 return HttpNotFound();
             }
-            return View(personalCheckingAccount);
+            return View(businessCheckingAccount);
         }
 
         // GET: PersonalCheckingAccounts/Edit/5
@@ -42,12 +42,12 @@ namespace Project1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PersonalCheckingAccount personalCheckingAccount = db.CheckingAccounts.Find(id);
-            if (personalCheckingAccount == null)
+            BusinessCheckingAccount businessCheckingAccount = db.BusinessAccounts.Find(id);
+            if (businessCheckingAccount == null)
             {
                 return HttpNotFound();
             }
-            return View(personalCheckingAccount);
+            return View(businessCheckingAccount);
         }
 
         // POST: PersonalCheckingAccounts/Edit/5
@@ -55,14 +55,14 @@ namespace Project1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Withdraw(string accountID, string Credit, string withdrawvalue)
+        public ActionResult Withdraw(string accountID, string Credit, string Debit, string withdrawvalue)
         {
             //System.Diagnostics.Debug.WriteLine(accountID);
             //System.Diagnostics.Debug.WriteLine(Credit);
             //System.Diagnostics.Debug.WriteLine(withdrawvalue);
             try
             {
-                PersonalCheckingAccount pa = new PersonalCheckingBL().Withdraw(accountID, Credit, withdrawvalue);
+                BusinessCheckingAccount pa = new BusinessCheckingBL().Withdraw(accountID, Credit, Debit, withdrawvalue);
                 ViewBag.Confirm = $"Your withdrawal of {withdrawvalue} was completed from account {accountID}";
                 return View("Confirmed");
             }
@@ -78,12 +78,12 @@ namespace Project1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PersonalCheckingAccount personalCheckingAccount = db.CheckingAccounts.Find(id);
-            if (personalCheckingAccount == null)
+            BusinessCheckingAccount businessCheckingAccount = db.BusinessAccounts.Find(id);
+            if (businessCheckingAccount == null)
             {
                 return HttpNotFound();
             }
-            return View(personalCheckingAccount);
+            return View(businessCheckingAccount);
         }
 
         // POST: PersonalCheckingAccounts/Edit/5
@@ -91,14 +91,14 @@ namespace Project1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Deposit(string accountID, string Credit, string depositvalue)
+        public ActionResult Deposit(string accountID, string Credit, string Debit, string depositvalue)
         {
             //System.Diagnostics.Debug.WriteLine(accountID);
             //System.Diagnostics.Debug.WriteLine(Credit);
             //System.Diagnostics.Debug.WriteLine(withdrawvalue);
             try
             {
-                PersonalCheckingAccount pa = new PersonalCheckingBL().Deposit(accountID, Credit, depositvalue);
+                BusinessCheckingAccount pa = new BusinessCheckingBL().Deposit(accountID, Credit, Debit, depositvalue);
                 ViewBag.Confirm = $"Your deposit of {depositvalue} was completed from account {accountID}";
                 return View("Confirmed");
             }

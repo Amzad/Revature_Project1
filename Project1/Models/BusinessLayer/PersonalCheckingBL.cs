@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Project1.Models
 {
-    public class PersonalCheckingBL : IAccount
+    public class PersonalCheckingBL
     {
         public void Create(string accountType, string startingValue)
         {
@@ -55,20 +55,17 @@ namespace Project1.Models
             }
         }
 
-        public String Deposit(int accountID, double amount)
+        public PersonalCheckingAccount Deposit(string accountID, string Credit, string withdrawvalue)
         {
             try
             {
-                /*PersonalCheckingAccount pa = AccountDAL.accountList.Find(account => account.AccountID == accountID) as PersonalCheckingAccount;
-                double balance = pa.Credit + amount;
-                return new PersonalCheckingDAL().Deposit(pa, amount, balance);*/
-
+                double balance = double.Parse(Credit) + double.Parse(withdrawvalue);
+                return new PersonalCheckingDAL().Withdraw(int.Parse(accountID), balance, double.Parse(withdrawvalue));
             }
             catch
             {
                 throw;
             }
-            return null;
         }
 
         public String Transfer(int fromAccount, int toAccount, double amount)

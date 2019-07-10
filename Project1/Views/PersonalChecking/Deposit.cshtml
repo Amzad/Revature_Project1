@@ -1,17 +1,17 @@
 ﻿@model Project1.Models.PersonalCheckingAccount
 
 @{
-    ViewBag.Title = "Withdraw";
+    ViewBag.Title = "Deposit";
 }
 
 <h2></h2>
 
-@using (Html.BeginForm("Withdraw", "PersonalChecking", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Deposit", "PersonalChecking", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>Withdraw from Personal Checking Account</h4>
+    <h4>Deposit to Personal Checking Account</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.AccountID)
@@ -32,9 +32,9 @@
     </div>
 
     <div class="form-group">
-        <label class="control-label col-md-2" for="withdrawvalue">Withdrawl Amount</label>
+        <label class="control-label col-md-2" for="depositvalue">Deposit Amount</label>
         <div class="col-md-10">
-            <input type="number" name="withdrawvalue" id="withdrawvalue" class="form-control" required><br>
+            <input type="number" name="depositvalue" id="depositvalue" class="form-control" required><br>
         </div>
     </div>
 
@@ -42,7 +42,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Withdraw" class="btn btn-default" />
+            <input type="submit" value="Deposit" class="btn btn-default" />
         </div>
     </div>
 </div>

@@ -172,6 +172,7 @@
     <Compile Include="Controllers\CreateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\BusinessCheckingController.cs" />
     <Compile Include="Controllers\PersonalCheckingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -281,9 +282,12 @@
     <Content Include="Views\PersonalChecking\Delete.cshtml" />
     <Content Include="Views\PersonalChecking\Details.cshtml" />
     <Content Include="Views\PersonalChecking\Edit.cshtml" />
-    <Content Include="Views\PersonalChecking\Index.cshtml" />
     <Content Include="Views\PersonalChecking\Withdraw.cshtml" />
     <Content Include="Views\PersonalChecking\Confirmed.cshtml" />
+    <Content Include="Views\PersonalChecking\Deposit.cshtml" />
+    <Content Include="Views\BusinessChecking\Withdraw.cshtml" />
+    <Content Include="Views\BusinessChecking\Deposit.cshtml" />
+    <Content Include="Views\BusinessChecking\Confirmed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
