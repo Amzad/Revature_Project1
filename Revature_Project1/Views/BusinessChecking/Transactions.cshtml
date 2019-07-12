@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Transaction>
+@{
+    //ViewData["Title"] = "GetAllCustomers";
+}
+<h4>Business Checking Accounts</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="min-width:200px">
+                Transaction History
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.transactionMessage
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    @Html.ActionLink("Back to Account List", "Index", "Home")
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "New Account";
+}
+
+<div>
+    <h3>Create a new account</h3>
+    <p>
+        Let's get you started with a new account. What type of account are you looking for?
+        @using (Html.BeginForm("Index", "Create", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <hr />
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="account" id="account1" value="pc" checked>
+                    <label class="form-check-label" for="account1">
+                        Personal Checking
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="account" id="account2" value="bc">
+                    <label class="form-check-label" for="account2">
+                        Business Checking
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="account" id="account3" value="la">
+                    <label class="form-check-label" for="account3">
+                        Loan
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="account" id="account4" value="td">
+                    <label class="form-check-label" for="account4">
+                        Term Deposit
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Next</button>
+        }
+
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
+</div>

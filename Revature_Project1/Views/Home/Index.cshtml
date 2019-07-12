@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <h2>Your banking and credit experience is about to get better!</h2>
+        @await Component.InvokeAsync("PCList", new { })
+        @await Component.InvokeAsync("BCList", new { })
+        @await Component.InvokeAsync("LAList", new { })
+        @await Component.InvokeAsync("TDList", new { })
+
+    </div>

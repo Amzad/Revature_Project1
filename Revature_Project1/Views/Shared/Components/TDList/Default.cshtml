@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Revature_Project1.Models.TermDepositAccount>
+
+@{
+//ViewData["Title"] = "GetAllCustomers";
+}
+@if (Model.Any())
+{
+    <h4>Term Deposit Accounts</h4>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="min-width:200px">
+                    Account Number
+                </th>
+                <th style="min-width:200px">
+                    Balance
+                </th>
+                <th style="min-width:200px">
+                    Term Length
+                </th>
+                <th>Account Functions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AccountID)
+                    </td>
+                    <td>
+                        $@Html.DisplayFor(modelItem => item.Credit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.depositTerm) Months
+                    </td>
+                    <td>
+                        @Html.ActionLink("Withdraw","Withdraw", "TermDeposit", new { id = item.AccountID }, null)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

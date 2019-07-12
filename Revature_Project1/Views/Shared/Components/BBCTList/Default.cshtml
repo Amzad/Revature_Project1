@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Revature_Project1.Models.BusinessCheckingAccount>
+
+<br />
+<hr />
+@foreach (var item in Model)
+{
+<div class="col-md-4">
+    @using (Html.BeginForm("Transfer", "BusinessChecking", FormMethod.Post, new { @class = "form-inline", role = "form" }))
+    {
+
+        @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group col-md-2" style="padding-bottom: 15px">
+            @Html.LabelFor(modelItem => item.AccountID, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(modelItem => item.AccountID, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+        </div>
+
+        <div class="form-group col-md-2" style="padding-bottom: 15px">
+            @Html.LabelFor(modelItem => item.Credit, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(modelItem => item.Credit, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+        </div>
+
+        <div class="form-group col-md-2" style="padding-bottom: 15px">
+            @Html.LabelFor(modelItem => item.Debit, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(modelItem => item.Debit, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+        </div>
+        <input type="text" name="FromAccID" value="@ViewBag.FromAccID" hidden />
+        <input type="text" name="CreditFrom" value="@ViewBag.CreditFrom" hidden />
+        <input type="text" name="TransferValue" value="@ViewBag.TransferValue" hidden />
+        <input type="text" name="accountToType" value="BusinessChecking" hidden />
+        <input type="text" name="AccountID" value="@Html.DisplayFor(modeitem => item.AccountID)" hidden />
+
+        <div class="form-group col-md-2" style="padding-bottom: 15px">
+            <button type="submit" value="Transfer" class="btn btn-primary">Next</button>
+        </div>
+
+    </div>
+    }
+</div>
+
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

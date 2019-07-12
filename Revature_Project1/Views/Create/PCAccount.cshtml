@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "New Personal Account";
+}
+
+
+<h3>Personal Checking Account</h3>
+<p>
+    Let's get your personal checking account ready!
+    @using (Html.BeginForm("PCAccount", "Create", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <hr />
+        //<p>Select one of the following:</p>
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+
+            <div class="form-group col-md-3">
+                <label for="accounttype">Account Type</label>
+                <input type="text" name="accounttype" id="accounttype" class="form-control" aria-describedby="accountPick" value="Personal Checking Account" readonly><br>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="startingvalue">Starting Amount</label>
+                <input type="number" min="0" name="startingvalue" id="startingvalue" class="form-control"><br>
+            </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary" value="Create Account">Create Account</button>
+            </div>
+        </div>
+    }
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Revature_Project1.Models.PersonalCheckingAccount>
+
+@{
+//ViewData["Title"] = "GetAllCustomers";
+}
+@if (Model.Any())
+{
+    <h4>Personal Checking Accounts</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="min-width:200px">
+                    Account Number
+                </th>
+                <th style="min-width:200px">
+                    Balance
+                </th>
+                <th style="min-width:200px">
+                </th>
+                <th style="min-width:200px">Account Functions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AccountID)
+                    </td>
+                    <td>
+                        $@Html.DisplayFor(modelItem => item.Credit)
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.ActionLink("Withdraw", "Withdraw", "PersonalChecking", new { id = item.AccountID }, null) |
+                        @Html.ActionLink("Deposit", "Deposit", "PersonalChecking", new { id = item.AccountID }, null) |
+                        @Html.ActionLink("Transfer", "TransferFrom", "PersonalChecking", new { id = item.AccountID }, null) |
+                        @Html.ActionLink("Transactions", "Transactions", "PersonalChecking", new { id = item.AccountID }, null) |
+                        @Html.ActionLink("Close", "Delete", "PersonalChecking", new { id = item.AccountID }, null)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

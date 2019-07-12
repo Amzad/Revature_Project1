@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Revature_Project1.Models.LoanAccount>
+
+@{
+//ViewData["Title"] = "GetAllCustomers";
+}
+@if (Model.Any())
+{
+    <h4>Loan Accounts</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="min-width:200px">
+                    Account Number
+                </th>
+                <th style="min-width:200px">
+                    Balance
+                </th>
+                <th style="min-width:200px"></th>
+                <th style="min-width:200px">Account Functions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AccountID)
+                    </td>
+                    <td>
+                        $@Html.DisplayFor(modelItem => item.Debit)
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.ActionLink("Pay Installment", "Pay", "Loan", new { id = item.AccountID }, null)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    }
+

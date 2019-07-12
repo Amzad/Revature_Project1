@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "New Term Deposit Account";
+}
+
+
+<h3>Personal Checking Account</h3>
+<p>
+    Let's get your personal checking account ready!
+    @using (Html.BeginForm("TDAccount", "Create", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <hr />
+        //<p>Select one of the following:</p>
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+
+            <div class="form-group col-md-3">
+                <label for="accounttype">Account Type</label>
+                <input type="text" name="accounttype" id="accounttype" class="form-control" aria-describedby="accountPick" value="Term Deposit Account" readonly><br>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="startingvalue">Deposit Amount</label>
+                <input type="number" min="0" name="startingvalue" id="startingvalue" class="form-control"><br>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="depositlength">Deposit Length</label>
+                <input type="number" min="0" name="depositlength" id="depositlength" class="form-control col-md-10"><br>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-primary" value="Create Account">Create Account</button>
+            </div>
+        </div>
+    }
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+
